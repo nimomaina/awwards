@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<input
+  type="hidden"
+  role="uploadcare-uploader"
+  name="content"
+  data-image-shrink="null" />
+
+<script>
+  UPLOADCARE_PUBLIC_KEY = '1376e3b3154344af54f8';
+  UPLOADCARE_IMAGES_ONLY = true;
+</script>
+
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+{% endblock %}
