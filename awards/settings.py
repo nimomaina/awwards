@@ -15,6 +15,8 @@ import django_heroku
 import dj_database_url
 from decouple import config,Csv
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 MODE = config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
@@ -67,7 +69,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'oscars',
-    'bootstrap3'
+    'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
