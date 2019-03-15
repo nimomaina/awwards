@@ -69,6 +69,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'oscars',
+    'pyuploadcare.dj',
     'bootstrap3',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,6 +78,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+
+UPLOADCARE = {
+'pub_key': '1376e3b3154344af54f8',
+'secret': 'ce399c441025afbaa93f',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

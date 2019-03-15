@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from pyuploadcare.dj.models import ImageField
+from pyuploadcare.dj.forms import FileWidget
+
 # Create your models here.
 
 class Profile(models.Model):
@@ -18,7 +21,10 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 
 class Project(models.Model):
-    screenshot = models.ImageField(default='default.jpg', blank=True, manual_crop='')
+    screenshot = ImageField()
     url = models.CharField(max_length=50)
     description = models.TextField()
     profile = models.OneToOneField(Profile)
+
+    def save_project(self):
+        self.save()
