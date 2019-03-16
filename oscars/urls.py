@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url('^home/', views.home, name='home'),
+    url(r'^project/$', views.add_image, name='upload_image'),
 
 ]

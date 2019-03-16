@@ -24,7 +24,18 @@ class Project(models.Model):
     screenshot = ImageField()
     url = models.CharField(max_length=50)
     description = models.TextField()
-    profile = models.OneToOneField(Profile)
+    title = models.CharField(max_length=100)
+    # profile = models.OneToOneField(Profile)
 
     def save_project(self):
         self.save()
+
+    def __str__(self):
+        return str(self.name)
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+

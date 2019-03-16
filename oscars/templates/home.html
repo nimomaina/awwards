@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<input
-  type="hidden"
-  role="uploadcare-uploader"
-  name="content"
-  data-image-shrink="null" />
+{{ form.media }}
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
 
-<script>
-  UPLOADCARE_PUBLIC_KEY = '1376e3b3154344af54f8';
-  UPLOADCARE_IMAGES_ONLY = true;
-</script>
 
-<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<input type="submit" value="Save"/>
+</form>
 
+{% for photo in screenshots %}
+    {{ photo.title }}
+    {{ photo.screenshot.cdn_url }}-/resize/400x300/-/effect/flip/-/effect/grayscale/
+{% endfor %}
 {% endblock %}
