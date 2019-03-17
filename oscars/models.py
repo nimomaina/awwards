@@ -20,7 +20,9 @@ def update_user_profile(sender, instance, created, **kwargs):
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    Bio = models.TextField(max_length = 50,null = True)
+    Bio = models.TextField(max_length = 255,null = True)
+    votes = models.ManyToManyField('Project', related_name='pic', max_length=30)
+
 
     def save_profile(self):
         self.save()
@@ -42,11 +44,17 @@ class Profile(models.Model):
 
 class Project(models.Model):
     screenshot = ImageField()
-    url = models.CharField(max_length=50)
-    description = models.TextField()
-
     title = models.CharField(max_length=100)
+    description = models.TextField()
+    url = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    profile = models.ForeignKey(Profile, null=True, related_name='project')
+    owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+
     # profile = models.OneToOneField(Profile)
+    class Meta:
+        ordering = ['-pk']
 
     def save_project(self):
         self.save()
@@ -57,12 +65,37 @@ class Project(models.Model):
     def delete_image(self):
         self.delete()
 
+    @classmethod
+    def get_project(cls, profile):
+        project = Project.objects.filter(Profile__pk=profile)
+        return project
+
+    @classmethod
+    def get_all_projects(cls):
+        project = Project.objects.all()
+        return project
+
+    @classmethod
+    def search_by_profile(cls, search_term):
+        projo = cls.objects.filter(profile__name__icontains=search_term)
+        return projo
+
+    @classmethod
+    def get_profile_projects(cls, profile):
+        project = Project.objects.filter(profile__pk=profile)
+        return project
+
+    @classmethod
+    def find_project_id(cls, id):
+        identity = Project.objects.get(pk=id)
+        return identity
+
 
 class Votes(models.Model):
-    design = models.CharField(max_length=30)
-    usability = models.CharField(max_length=30)
-    content = models.CharField(max_length=30, blank=True, null=True)
-    average = models.FloatField(max_length=8)
+    design = models.CharField(max_length=100)
+    usability = models.CharField(max_length=100)
+    content = models.CharField(max_length=100, blank=True, null=True)
+    average = models.FloatField(max_length=50)
     user = models.ForeignKey(User, null=True)
     project = models.ForeignKey(Project, related_name='rate', null=True)
 

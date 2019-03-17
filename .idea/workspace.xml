@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdb0276c-d349-4243-8172-081d7af089b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/oscars/templates/images/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oscars/templates/images/img2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/awards/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/awards/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oscars/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/oscars/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oscars/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/oscars/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oscars/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/oscars/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oscars/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/oscars/templates/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,10 +28,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/oscars/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-345">
-              <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="111">
+              <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oscars/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,11 +90,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oscars/images/img1.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oscars/images/img2.jpg">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -116,7 +118,6 @@
         <option value="$PROJECT_DIR$/awards/urls.py" />
         <option value="$PROJECT_DIR$/oscars/templates/signup.html" />
         <option value="$PROJECT_DIR$/oscars/templates/registration/login.html" />
-        <option value="$PROJECT_DIR$/oscars/forms.py" />
         <option value="$PROJECT_DIR$/oscars/views.py" />
         <option value="$PROJECT_DIR$/oscars/templates/project.html" />
         <option value="$PROJECT_DIR$/oscars/urls.py" />
@@ -126,6 +127,7 @@
         <option value="$PROJECT_DIR$/oscars/templates/home.html" />
         <option value="$PROJECT_DIR$/oscars/templates/base.html" />
         <option value="$PROJECT_DIR$/awards/settings.py" />
+        <option value="$PROJECT_DIR$/oscars/forms.py" />
         <option value="$PROJECT_DIR$/oscars/models.py" />
       </list>
     </option>
@@ -161,6 +163,12 @@
               <item name="Awwards" type="b2602c69:ProjectViewProjectNode" />
               <item name="Awwards" type="462c0819:PsiDirectoryNode" />
               <item name="oscars" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Awwards" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Awwards" type="462c0819:PsiDirectoryNode" />
+              <item name="oscars" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Awwards" type="b2602c69:ProjectViewProjectNode" />
@@ -219,7 +227,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="683" y="25" width="683" height="702" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2518968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -293,16 +300,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/oscars/static/project.css" />
-    <entry file="file://$PROJECT_DIR$/oscars/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oscars/templates/project.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -383,10 +380,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/oscars/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/oscars/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-345">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        <state relative-caret-position="111">
+          <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
