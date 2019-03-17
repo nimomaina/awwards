@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="w3-display-container w3-animate-opacity">
+<div class="w3-display-container w3-animate-opacity " style="background-image:url('img1.jpg')">
     <img src="images/img2.jpg" alt="hourglass" style="width:100%;min-height:350px;max-height:600px;">
     <div class="w3-container w3-display-bottomleft w3-margin-bottom">
 
@@ -19,19 +19,32 @@
                 <header class="hovereffect">
                     <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image">
                     <div class="overlay">
-                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="#"><small>Vote Now</small></a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{% url 'vote' photo.pk %}"><small>Vote Now</small></a></p>
                     </div>
 
                 </header>
 
-                <div class="w3-container">
+                <div class="w3-container w3-margin">
+
                     <strong>{{ photo.title }}</strong>
 
                 </div>
 
-                <footer class="w3-container ">
-                    {{ photo.description }}
-                    {{ photo.url }}
+                <footer class="w3-container w3-margin">
+                    <a href="profile/{{photo.profile.user.username}}/">
+                        <div class="row">
+                            <div class="">
+                                {% if photo.profile.profile_pic %}
+                                <img src="{{photo.profile.profile_pic.url}}" alt="img" width="40px" height="40px"
+                                    style="border-radius: 50%; margin-left: 10px;" class="img-responsive">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-2" style="color:black;font-size: 10px;font-weight: bold;">
+                                <h4 class="card-title">{{photo.profile.user.username}}</h4>
+                            </div>
+                        </div>
+                    </a>
+                <small class="text-muted">{{photo.created_on|timesince}}</small>
 
 
                 </footer>

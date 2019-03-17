@@ -102,7 +102,7 @@ def vote(request,project_id):
        rateform = VotesForm()
    except DoesNotExist:
        raise Http404()
-   return render(request,"project.html", locals())
+   return render(request,"projects.html", locals())
 
 
 
