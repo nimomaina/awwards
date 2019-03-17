@@ -33,9 +33,6 @@ class Project(models.Model):
     def __str__(self):
         return str(self.name)
 
-    def save_image(self):
-        self.save()
-
     def delete_image(self):
         self.delete()
 

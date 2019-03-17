@@ -1,17 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ form.media }}
-<form action="" method="post">
-{% csrf_token %}
-{{ form.as_p }}
+
+<div class="w3-container">
+    <div class="w3-row">
+        {% for photo in screenshots %}
+        <div class="w3-col l3 m6 s12 w3-padding">
+            <div class="w3-card-4 w3-white">
+
+                <header class="hovereffect">
+                    <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image">
+                    <div class="overlay">
+                        <h2>Hover</h2>
+                        <a class="info w3-btn w3-round-xxlarge w3-white" href="#">Vote Now</a>
+                    </div>
+
+                </header>
+
+                <div class="w3-container">
+                    <strong>{{ photo.title }}</strong>
+
+                </div>
+
+                <footer class="w3-container ">
+                    {{ photo.description }}
+                    {{ photo.url }}
 
 
-<input type="submit" value="Save"/>
-</form>
+                </footer>
 
-{% for photo in screenshots %}
-    {{ photo.title }}
-    {{ photo.screenshot.cdn_url }}-/resize/400x300/-/effect/flip/-/effect/grayscale/
-{% endfor %}
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
 {% endblock %}
