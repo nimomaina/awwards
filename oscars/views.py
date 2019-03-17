@@ -92,9 +92,17 @@ def vote_project(request,project_id):
             return redirect('vote',project_id)
     else:
         voteform = VotesForm()
-    return render(request,'votes.html',locals())
+    return render(request,'vote.html',locals())
 
-
+def vote(request,project_id):
+   try:
+       project = Project.objects.get(pk=project_id)
+       vote = Votes.objects.filter(project_id=project_id).all()
+       print([r.project_id for r in vote])
+       rateform = VotesForm()
+   except DoesNotExist:
+       raise Http404()
+   return render(request,"project.html", locals())
 
 
 
