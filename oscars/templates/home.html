@@ -2,23 +2,24 @@
 
 {% block content %}
 
-    <div class="w3-display-container w3-animate-opacity">
-  <img src= "images/img2.jpg" alt="hourglass" style= "width:100%;min-height:350px;max-height:600px;" >
-  <div class="w3-container w3-display-bottomleft w3-margin-bottom">
+<div class="w3-display-container w3-animate-opacity">
+    <img src="images/img2.jpg" alt="hourglass" style="width:100%;min-height:350px;max-height:600px;">
+    <div class="w3-container w3-display-bottomleft w3-margin-bottom">
 
-  </div>
+    </div>
 </div>
+
+
 <div class="w3-container">
     <div class="w3-row">
         {% for photo in screenshots %}
-        <div class="w3-col l3 m6 s12 w3-padding">
+        <div class="w3-col l4 m6 s12 w3-padding">
             <div class="w3-card-4 w3-white">
 
                 <header class="hovereffect">
                     <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image">
                     <div class="overlay">
-                        <h2>Hover</h2>
-                        <p><a class="info w3-btn w3-round-xxlarge w3-white" href="#">Vote Now</a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="#"><small>Vote Now</small></a></p>
                     </div>
 
                 </header>
@@ -42,6 +43,5 @@
     </div>
 
 </div>
-
 
 {% endblock %}

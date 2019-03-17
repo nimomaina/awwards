@@ -30,7 +30,6 @@ def home(request):
     return render(request, 'home.html',{"screenshots":screenshots})
 
 
-@login_required(login_url='/accounts/login')
 def add_image(request):
     current_user = request.user
     if request.method == 'POST':
@@ -75,3 +74,30 @@ def edit(request):
     else:
         form = ProfileForm()
     return render(request, 'edit_profile.html', locals())
+
+
+
+@login_required(login_url='/accounts/login')
+def vote_project(request,project_id):
+    project = Project.objects.get(pk=project_id)
+    profile = User.objects.get(username=request.user)
+    if request.method == 'POST':
+        voteform = VotesForm(request.POST, request.FILES)
+        print(voteform.errors)
+        if voteform.is_valid():
+            rating = voteform.save(commit=False)
+            rating.project = project
+            rating.user = request.user
+            rating.save()
+            return redirect('vote',project_id)
+    else:
+        voteform = VotesForm()
+    return render(request,'votes.html',locals())
+
+
+
+
+
+
+
+
