@@ -9,28 +9,13 @@ from .models import *
 
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.birth_date = form.cleaned_data.get('birth_date')
-            user.save()
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
 
 def home(request):
     screenshots = Project.objects.all()
     return render(request, 'home.html',{"screenshots":screenshots})
 
-
-def add_image(request):
+@login_required(login_url='/accounts/login/')
+def upload_project(request):
     current_user = request.user
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -42,10 +27,8 @@ def add_image(request):
         form = ProjectForm()
 
 
-    return render(request,'project.html',locals())
+    return render(request,'upload_project.html',locals())
 
-
-@login_required(login_url='/accounts/login/')
 def profile(request, username):
     projo = Project.objects.all()
     profile = User.objects.get(username=username)
@@ -60,7 +43,6 @@ def profile(request, username):
     return render(request, 'profile.html', locals())
 
 
-@login_required(login_url='/accounts/login/')
 def edit(request):
     profile = User.objects.get(username=request.user)
 
@@ -76,36 +58,35 @@ def edit(request):
     return render(request, 'edit_profile.html', locals())
 
 
-
-@login_required(login_url='/accounts/login')
-def vote_project(request,project_id):
-    project = Project.objects.get(pk=project_id)
-    profile = User.objects.get(username=request.user)
-    if request.method == 'POST':
-        voteform = VotesForm(request.POST, request.FILES)
-        print(voteform.errors)
-        if voteform.is_valid():
-            rating = voteform.save(commit=False)
-            rating.project = project
-            rating.user = request.user
-            rating.save()
-            return redirect('vote',project_id)
-    else:
-        voteform = VotesForm()
-    return render(request,'vote.html',locals())
-
-def vote(request,project_id):
-   try:
-       project = Project.objects.get(pk=project_id)
-       vote = Votes.objects.filter(project_id=project_id).all()
-       print([r.project_id for r in vote])
-       rateform = VotesForm()
-   except DoesNotExist:
-       raise Http404()
-   return render(request,"projects.html", locals())
-
-
-
-
-
-
+#
+# def vote_project(request,project_id):
+#     project = Project.objects.get(pk=project_id)
+#     profile = User.objects.get(username=request.user)
+#     if request.method == 'POST':
+#         voteform = VotesForm(request.POST, request.FILES)
+#         print(voteform.errors)
+#         if voteform.is_valid():
+#             rating = voteform.save(commit=False)
+#             rating.project = project
+#             rating.user = request.user
+#             rating.save()
+#             return redirect('vote',project_id)
+#     else:
+#         voteform = VotesForm()
+#     return render(request,'vote.html',locals())
+#
+# def vote(request,project_id):
+#    try:
+#        project = Project.objects.get(pk=project_id)
+#        vote = Votes.objects.filter(project_id=project_id).all()
+#        print([r.project_id for r in vote])
+#        rateform = VotesForm()
+#    except DoesNotExist:
+#        raise Http404()
+#    return render(request,"projects.html", locals())
+#
+#
+#
+#
+#
+#
