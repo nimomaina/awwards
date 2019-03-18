@@ -89,6 +89,22 @@ def vote_project(request,project_id):
         voteform = VotesForm()
     return render(request,'vote.html',locals())
 
+
+
+def Vote(request):
+    profile = User.objects.get(username=request.user)
+    return render(request,'vote.html',locals())
+
+def view_vote(request,project_id):
+    user = User.objects.get(username=request.user)
+    project = Project.objects.get(pk=project_id)
+    vote = Votes.objects.filter(project_id=project_id)
+    print(vote)
+    return render(request,'project.html',locals())
+
+
+
+@login_required(login_url='/accounts/login/')
 def vote(request,project_id):
    try:
        project = Project.objects.get(pk=project_id)
