@@ -2,5 +2,70 @@
 {% load bootstrap3 %}
 {% block content %}
 {{block.super}}
+<div class="container-fluid" id="form">
+    <div class="col-md-12">
+        <form id="questions" >
+            <div class="row">
+                <div class="col-md-6">
+                    Design.
+                </div>
 
+                <div class="col-md-6">
+                    <input type="radio" name="rate1" id="terrible" checked="checked" value="terrible">2
+                    <input type="radio" name="rate1" id="poor" value="poor">4
+                    <input type="radio" name="rate1" id="average" value="average">6
+                    <input type="radio" name="rate1" id="very good" value="very good">8
+                    <input type="radio" name="rate1" id="excellent" value="excellent">10
+
+                </div>
+            </div>
+
+
+            <br>
+            <div class="row">
+                </br>
+                <div class="col-md-6">
+                    Usability.
+                </div>
+
+                <div class="col-md-6">
+                <input type="radio" name="rate1" id="terrible" checked="checked" value="terrible">2
+                    <input type="radio" name="rate1" id="poor" value="poor">4
+                    <input type="radio" name="rate1" id="average" value="average">6
+                    <input type="radio" name="rate1" id="very good" value="very good">8
+                    <input type="radio" name="rate1" id="excellent" value="excellent">10
+
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                </br>
+                <div class="col-md-6">
+                    creativity.
+                </div>
+
+                <div class="col-md-6">
+             <input type="radio" name="rate1" id="terrible" checked="checked" value="terrible">2
+                    <input type="radio" name="rate1" id="poor" value="poor">4
+                    <input type="radio" name="rate1" id="average" value="average">6
+                    <input type="radio" name="rate1" id="very good" value="very good">8
+                    <input type="radio" name="rate1" id="excellent" value="excellent">10
+                </div>
+            </div>
+
+            <br>
+            <button class="btn btn-outline-success" type="submit" id="submit" name="reset_form" value="Reset Form" onclick="this.form.reset();">SUBMIT</button>
+        </form>
+    </div>
+</div>
+<div id="divhidden" style="display: none;">
+    <div class="col-md-8">
+        <form action="{% url 'vote'  project.id %}" method="POST" enctype="multipart/form-data" id="ratingform">
+            {% csrf_token %}
+            {% bootstrap_form voteform %}
+            <input type="submit" class="btn btn-outline-success" value="Upload">
+        </form>
+    </div>
+</div>
 {% endblock %}

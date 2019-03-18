@@ -28,7 +28,20 @@
 
 
 {%endblock%}
-
+{% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock %}
+  <footer>
+    ...
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="{% static 'js/oscars.js' %}"></script>
+  {% block javascript %}
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js">
+  </script>
+  <script src="https://use.fontawesome.com/191e478c5e.js"></script>
+  {% endblock %}
 
 </body>
 </html>
