@@ -54,4 +54,4 @@ None known at the moment.
 In case of clarification email me at nimomaina.nm@gmail.com
 
 ### License
-Copyright (c) 2019 **Wairimu Maina*
+Copyright (c) 2019 **Wairimu Maina**
