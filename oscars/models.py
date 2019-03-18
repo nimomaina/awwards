@@ -79,8 +79,8 @@ class Project(models.Model):
         return project
 
     @classmethod
-    def search_by_profile(cls, search_term):
-        projo = cls.objects.filter(profile__name__icontains=search_term)
+    def search_by_project(cls, search_term):
+        projo = cls.objects.filter(title__icontains=search_term)
         return projo
 
     @classmethod

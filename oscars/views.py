@@ -64,7 +64,7 @@ def search_results(request):
     project= Project.objects.all()
     if 'Project' in request.GET and request.GET["project"]:
         search_term = request.GET.get("project")
-        searched_project = Project.search_by_profile(search_term)
+        searched_project = Project.search_by_project(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',locals())
