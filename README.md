@@ -1,5 +1,5 @@
 # Nimo-Awwwwards
-A web application that clones all Instagram functions.
+A web application that rates uploaded projects.
 
 ## By Wairimu Maina
 A student at Moringa School and an aspiring software developer.
@@ -32,7 +32,7 @@ Nimo-Awwwwards is a web application that allows users to upload projects they ha
 * Django
 
 ## Application link
-https://nimo-awwwwards.herokuapp.com/
+https://nimo-awards.herokuapp.com/
 
 ## Prerequisites
 * Python 3.6 required
