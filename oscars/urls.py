@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^upload/', views.upload_project, name='upload'),
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
+    url(r'^accounts/update/', views.edit, name='update_profile'),
 
 ]
 

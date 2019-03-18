@@ -31,7 +31,9 @@
                 </div>
 
                 <footer class="w3-container w3-margin">
-                    <a href="profile/{{photo.profile.user.username}}/">
+                    <small>{{photo.owner}}</small>
+
+
                         <div class="row">
                             <div class="">
                                 {% if photo.profile.profile_pic %}
@@ -43,7 +45,7 @@
                                 <h4 class="card-title">{{photo.profile.user.username}}</h4>
                             </div>
                         </div>
-                    </a>
+
                 <small class="text-muted">{{photo.created_on|timesince}}</small>
 
 

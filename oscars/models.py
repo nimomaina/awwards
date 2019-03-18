@@ -19,8 +19,11 @@ def update_user_profile(sender, instance, created, **kwargs):
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    Bio = models.TextField(max_length = 255,null = True)
-    votes = models.ManyToManyField('Project', related_name='pic', max_length=30)
+    Bio = models.CharField(max_length = 255,null = True)
+    email = models.EmailField(null = True)
+    address = models.CharField(max_length=255, null = True)
+    phone_number = models.IntegerField( null = True)
+    full_name = models.CharField(max_length=255, null=True)
 
 
     def save_profile(self):
@@ -48,7 +51,7 @@ class Project(models.Model):
     url = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     profile = models.ForeignKey(Profile, null=True, related_name='project')
-    owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     # profile = models.OneToOneField(Profile)

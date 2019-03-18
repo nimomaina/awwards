@@ -12,6 +12,7 @@ from .models import *
 
 def home(request):
     screenshots = Project.objects.all()
+    current_user = request.user
     return render(request, 'home.html',{"screenshots":screenshots})
 
 @login_required(login_url='/accounts/login/')
@@ -52,7 +53,7 @@ def edit(request):
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
-            return redirect('edit_profile')
+            return redirect('update_profile')
     else:
         form = ProfileForm()
     return render(request, 'edit_profile.html', locals())
