@@ -9,26 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-right w3-hide-small">
-    {% if user.is_authenticated %}
 
-    <div class="w3-dropdown-hover">
-        <button class="w3-button"><i
-                class="far fa-user "></i>
-        </button>
-
-
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="{% url 'profile' username=user %}" class="w3-bar-item w3-button">View Profile</a>
-
-
-            <a href="/logout" class="w3-bar-item w3-button">Logout</a>
-        </div>
-    </div>
-    {% else %}
-
-    <a href="/accounts/login" class="w3-bar-item w3-button">Login</a>
-
-    {% endif %}
+    <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+        <input type="text" name="search" placeholder="&#xF002;  Search Project" id="input" class="w3-input" style="font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;">
+    </form>
 </div>
 
 <!-- Sidebar -->
@@ -45,19 +32,19 @@
 
 
     <a href="{% url 'profile' username=user %}" class="w3-bar-item w3-button">View Profile</a>
-     <hr>
+    <hr>
     <a href="{% url 'update_profile'%}" class="w3-bar-item w3-button">Update Profile</a>
-     <hr>
+    <hr>
 
 
     <a href="/logout" class="w3-bar-item w3-button">Logout</a>
-     <hr>
+    <hr>
 
     {% else %}
 
 
     <a href="/accounts/login" class="w3-bar-item w3-button">Login</a>
- <hr>
+    <hr>
     {% endif %}
 
 
@@ -82,6 +69,7 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
 }
+
 
 </script>
 

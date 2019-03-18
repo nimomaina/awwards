@@ -4,9 +4,14 @@
 {% block content %}
 
 <div class="w3-display-container w3-animate-opacity " style="background-image:url('img1.jpg')">
-    <img src="{% static 'images/tab.jpg' %}" alt="hourglass" style="width:100%;min-height:350px;max-height:600px;">
+    <img src="{% static 'images/tab.jpg' %}" alt="hourglass" style="width:100%;min-height:350px;max-height:600px;filter: brightness(40%);
+">
+
+<div class="w3-display-middle w3-text-white w3-center">
+    <h2 class="w3-jumbo" style="font-family: 'Lobster', cursive;text-decoration: underline overline;">Awwwwards</h2>
 
 
+</div>
 </div>
 
 
@@ -20,6 +25,8 @@
                     <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image w3-center" style="min-height:100%; max-height:100%">
                     <div class="overlay">
                         <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href=""><small>Vote Now</small></a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{{photo.url}}"><small>Visit Site</small></a></p>
+
                     </div>
 
                 </header>
@@ -31,18 +38,13 @@
                 </div>
 
                 <footer class="w3-container w3-margin">
-                    <small>{{photo.owner}}</small>
+                    <small>{{user.username}}</small>
 
 
                         <div class="row">
-                            <div class="">
-                                {% if photo.profile.profile_pic %}
-                                <img src="{{photo.profile.profile_pic.url}}" alt="img" width="40px" height="40px"
-                                    style="border-radius: 50%; margin-left: 10px;" class="img-responsive">
-                                {% endif %}
-                            </div>
+
                             <div class="col-md-2" style="color:black;font-size: 10px;font-weight: bold;">
-                                <h4 class="card-title">{{photo.profile.user.username}}</h4>
+                                <h5 class="card-title"></h5>
                             </div>
                         </div>
 

@@ -106,13 +106,12 @@ def view_vote(request,project_id):
 
 @login_required(login_url='/accounts/login/')
 def vote(request,project_id):
-   try:
-       project = Project.objects.get(pk=project_id)
-       vote = Votes.objects.filter(project_id=project_id).all()
-       print([r.project_id for r in vote])
-       rateform = VotesForm()
-   except DoesNotExist:
-       raise Http404()
+
+   project = Project.objects.get(pk=project_id)
+   vote = Votes.objects.filter(project_id=project_id).all()
+   print([r.project_id for r in vote])
+   rateform = VotesForm()
+
    return render(request,"projects.html", locals())
 
 
