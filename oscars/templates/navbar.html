@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Awards</title>
-<
+</head>
+<body>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-right w3-hide-small">
+
+    <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+        <input type="text" name="search" placeholder="&#xF002;  Search Project" id="input" class="w3-input" style="font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;">
+    </form>
+</div>
 
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block w3-animate-left" style="display:none;z-index:5; width:200px;" id="mySidebar">
