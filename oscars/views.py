@@ -13,7 +13,7 @@ from .models import *
 def home(request):
     screenshots = Project.objects.all()
     current_user = request.user
-    return render(request, 'home.html',{"screenshots":screenshots})
+    return render(request, 'home.html',locals())
 
 @login_required(login_url='/accounts/login/')
 def upload_project(request):
@@ -29,6 +29,7 @@ def upload_project(request):
 
 
     return render(request,'upload_project.html',locals())
+
 
 def profile(request, username):
     projo = Project.objects.all()
@@ -58,36 +59,48 @@ def edit(request):
         form = ProfileForm()
     return render(request, 'edit_profile.html', locals())
 
+def search_results(request):
+    profile= Profile.objects.all()
+    project= Project.objects.all()
+    if 'Project' in request.GET and request.GET["project"]:
+        search_term = request.GET.get("project")
+        searched_project = Project.search_by_profile(search_term)
+        message = f"{search_term}"
 
-#
-# def vote_project(request,project_id):
-#     project = Project.objects.get(pk=project_id)
-#     profile = User.objects.get(username=request.user)
-#     if request.method == 'POST':
-#         voteform = VotesForm(request.POST, request.FILES)
-#         print(voteform.errors)
-#         if voteform.is_valid():
-#             rating = voteform.save(commit=False)
-#             rating.project = project
-#             rating.user = request.user
-#             rating.save()
-#             return redirect('vote',project_id)
-#     else:
-#         voteform = VotesForm()
-#     return render(request,'vote.html',locals())
-#
-# def vote(request,project_id):
-#    try:
-#        project = Project.objects.get(pk=project_id)
-#        vote = Votes.objects.filter(project_id=project_id).all()
-#        print([r.project_id for r in vote])
-#        rateform = VotesForm()
-#    except DoesNotExist:
-#        raise Http404()
-#    return render(request,"projects.html", locals())
-#
-#
-#
-#
-#
-#
+        return render(request, 'search.html',locals())
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request,'search.html',{"message":message})
+
+def vote_project(request,project_id):
+    project = Project.objects.get(pk=project_id)
+    profile = User.objects.get(username=request.user)
+    if request.method == 'POST':
+        voteform = VotesForm(request.POST, request.FILES)
+        print(voteform.errors)
+        if voteform.is_valid():
+            rating = voteform.save(commit=False)
+            rating.project = project
+            rating.user = request.user
+            rating.save()
+            return redirect('vote',project_id)
+    else:
+        voteform = VotesForm()
+    return render(request,'vote.html',locals())
+
+def vote(request,project_id):
+   try:
+       project = Project.objects.get(pk=project_id)
+       vote = Votes.objects.filter(project_id=project_id).all()
+       print([r.project_id for r in vote])
+       rateform = VotesForm()
+   except DoesNotExist:
+       raise Http404()
+   return render(request,"projects.html", locals())
+
+
+
+
+
+

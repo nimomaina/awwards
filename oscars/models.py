@@ -15,6 +15,10 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
 
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
@@ -50,19 +54,16 @@ class Project(models.Model):
     description = models.TextField()
     url = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    profile = models.ForeignKey(Profile, null=True, related_name='project')
-    owner = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
+    profile = models.ForeignKey(Profile, null=True,related_name='project')
+    owner = models.ForeignKey(User,null = True, on_delete=models.CASCADE,)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
-    # profile = models.OneToOneField(Profile)
     class Meta:
         ordering = ['-pk']
 
     def save_project(self):
         self.save()
 
-    def __str__(self):
-        return str(self.name)
 
     def delete_image(self):
         self.delete()
@@ -101,8 +102,6 @@ class Votes(models.Model):
     user = models.ForeignKey(User, null=True)
     project = models.ForeignKey(Project, related_name='rate', null=True)
 
-    def __str__(self):
-        return self.design
 
     class Meta:
         ordering = ['-id']
