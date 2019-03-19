@@ -60,10 +60,8 @@ def edit(request):
     return render(request, 'edit_profile.html', locals())
 
 def search_results(request):
-    profile= Profile.objects.all()
-    project= Project.objects.all()
-    if 'Project' in request.GET and request.GET["project"]:
-        search_term = request.GET.get("project")
+    if 'project' in request.GET and request.GET['project']:
+        search_term = request.GET.get('project')
         searched_project = Project.search_by_project(search_term)
         message = f"{search_term}"
 

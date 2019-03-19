@@ -80,7 +80,7 @@ class Project(models.Model):
 
     @classmethod
     def search_by_project(cls, search_term):
-        projo = cls.objects.filter(title__icontains=search_term)
+        projo = Project.objects.filter(title__icontains=search_term)
         return projo
 
     @classmethod

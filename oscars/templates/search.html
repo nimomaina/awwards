@@ -1,29 +1,66 @@
 {%extends 'base.html'%}
 {% block content %}
-<div class="container" id="search">
+<div class="w3-container" id="search">
 
-  <div class="row">
-    {% if project%}
-    <h2>Found {{ projectlength }} of searched term {{message}}</h2>
-    {% else %}
-    <h2> Found 0 project for the search term {{message}}</h2>
-    {% endif %}
+    <div class="w3-row">
+        {% if project%}
+        <h2>Found {{ project|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 project for the search term {{message}}</h2>
+        {% endif %}
 
-  </div>
+    </div>
 
-  <div class="row">
+    <div class="w3-row">
 
-    {% if project %}
-    {% for item in project %}
+        {% if searched_project %}
+        {% for photo in searched_project %}
 
-    <div class="col-md-6">
-      <div class="card">
-        <h1>{{project.title}}</h1>
-        <img src="{{project.screenshot.url}}" class="image-responsive" style="height:300px;width:600px" data-toggle="tooltip">
-      </div>
+        <div class="w3-col l4 m6 s12 w3-padding">
+            <div class="w3-card-4 w3-white">
+
+                <header class="hovereffect" style="height:300px">
+                    <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image w3-center"
+                         style="min-height:100%; max-height:100%">
+                    <div class="overlay">
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="">
+                            <small>Vote Now</small>
+                        </a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{{photo.url}}">
+                            <small>Visit Site</small>
+                        </a></p>
+
+                    </div>
+
+                </header>
+
+                <div class="w3-container w3-margin">
+
+                    <strong>{{ photo.title }}</strong>
+
+                </div>
+
+                <footer class="w3-container w3-margin">
+                    <small>{{user.username}}</small>
+
+
+                    <div class="row">
+
+                        <div class="col-md-2" style="color:black;font-size: 10px;font-weight: bold;">
+                            <h5 class="card-title"></h5>
+                        </div>
+                    </div>
+
+                    <small class="text-muted">{{photo.created_on|timesince}}</small>
+
+
+                </footer>
+
+            </div>
+
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
-</div>
-{% endfor %}
-{% endif %}
-{% endblock %}
+        {% endblock %}
