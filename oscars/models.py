@@ -6,7 +6,7 @@ from pyuploadcare.dj.models import ImageField
 from pyuploadcare.dj.forms import FileWidget
 from django.conf import settings
 from django.db.models import Avg, Max, Min
-import numpy as np
+# import numpy as np
 
 # Create your models here.
 
@@ -94,17 +94,6 @@ class Project(models.Model):
         project = Project.objects.filter(profile__pk=profile)
         return project
 
-    def average_design(self):
-        design_ratings = list(map(lambda x: x.design_rating, self.reviews.all()))
-        return np.mean(design_ratings)
-
-    def average_usability(self):
-        usability_ratings = list(map(lambda x: x.usability_rating, self.reviews.all()))
-        return np.mean(usability_ratings)
-
-    def average_content(self):
-        content_ratings = list(map(lambda x: x.content_rating, self.reviews.all()))
-        return np.mean(content_ratings)
 
 class Votes(models.Model):
 
