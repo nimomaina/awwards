@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^project/(?P<project_id>\d+)', views.project, name='project'),
     url(r'^rate/(\d+)',views.vote_project,name = 'rate'),
+    url(r'^api/profile/$', views.ProfileList.as_view()),
+    url(r'^api/project/$', views.ProjectList.as_view())
 
 ]
 

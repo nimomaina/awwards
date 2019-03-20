@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,Http404
 from .forms import *
 from .models import *
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import *
 
 
 
@@ -124,6 +127,20 @@ def vote_project(request, project_id):
    return render(request,'vote.html',{'form':form,'project':project,'rating':rating})
 
 
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_proj = Project.objects.all()
+        serializers = ProjectSerializer(all_proj, many=True)
+        return Response(serializers.data)
+
+
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profile = Project.objects.all()
+        serializers = ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
 
 
 
