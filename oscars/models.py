@@ -57,8 +57,8 @@ class Project(models.Model):
     description = models.TextField()
     url = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    profile = models.ForeignKey(Profile, null=True,related_name='project')
-    owner = models.ForeignKey(User,null = True, on_delete=models.CASCADE,)
+    profile = models.ForeignKey(Profile)
+    owner = models.ForeignKey(User)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
