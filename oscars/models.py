@@ -28,7 +28,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     url = models.CharField(max_length=255)
-    owner = models.OneToOneField(User)
+    owner = models.ForeignKey(User)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     design=models.PositiveIntegerField(choices=list(zip(range(1,11), range(1,11))), default=1)
     usability = models.PositiveIntegerField(choices=list(zip(range(1, 11), range(1, 11))), default=1)
