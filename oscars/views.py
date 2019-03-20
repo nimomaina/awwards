@@ -32,17 +32,16 @@ def upload_project(request):
 
 
 def profile(request, username):
-    projo = Project.objects.all()
-    profile = User.objects.get(username=username)
 
+    profile = User.objects.get(username=username)
     print(profile.id)
     try:
         profile_details = Profile.get_by_id(profile.id)
     except:
         profile_details = Profile.filter_by_id(profile.id)
-    # project = Project.objects.filter(profile.id)
     user = request.user
-    project = Project.objects.all().filter(owner_id=user.id)
+    profile = User.objects.get(username=username)
+    project = Project.get_by_id(profile.id)
     title = f'@{profile.username} awwward projects and screenshots'
 
     return render(request, 'profile.html', locals())
@@ -63,8 +62,8 @@ def edit(request):
     return render(request, 'edit_profile.html', locals())
 
 def search_results(request):
-    if 'project' in request.GET and request.GET['project']:
-        search_term = request.GET.get('project')
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
         searched_project = Project.search_by_project(search_term)
         message = f"{search_term}"
 

@@ -32,6 +32,8 @@ class Profile(models.Model):
     phone_number = models.IntegerField( null = True)
     full_name = models.CharField(max_length=255, null=True)
 
+    def __str__(self):
+        return self.user.username
 
     def save_profile(self):
         self.save()
@@ -57,8 +59,8 @@ class Project(models.Model):
     description = models.TextField()
     url = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    profile = models.ForeignKey(Profile)
-    owner = models.ForeignKey(User)
+    profile = models.ForeignKey(Profile,null=True)
+    owner = models.ForeignKey(User, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
@@ -72,7 +74,13 @@ class Project(models.Model):
         self.delete()
 
     def __str__(self):
+
         return self.owner
+
+    @classmethod
+    def get_by_id(cls, id):
+        details = Project.objects.filter(owner=id)
+        return details
 
     @classmethod
     def get_project(cls, profile):
