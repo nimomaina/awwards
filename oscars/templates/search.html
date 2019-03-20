@@ -3,7 +3,7 @@
 <div class="w3-container" id="search">
 
     <div class="w3-row">
-        {% if project%}
+        {% if searched_project%}
         <h2>Found {{ project|length }} of searched term {{message}}</h2>
         {% else %}
         <h2> Found 0 project for the search term {{message}}</h2>

@@ -12,9 +12,7 @@ urlpatterns = [
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
     url(r'^accounts/update/', views.edit, name='update_profile'),
     url(r'^search/', views.search_results, name='search_results'),
-    url(r'^voting/(?P<project_id>\d+)', views.vote_project, name='rate'),
-    url(r'^vote/(?P<project_id>\d+)', views.vote, name='vote'),
-    url(r'^project/(?P<project_id>\d+)', views.project, name='project')
+    url(r'^project/(?P<project_id>\d+)', views.project, name='project'),
 
 ]
 

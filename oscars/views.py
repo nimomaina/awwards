@@ -84,47 +84,23 @@ def project(request, project_id):
 
 
 
-def vote_project(request,project_id):
-    project = Project.objects.get(pk=project_id)
-    profile = User.objects.get(username=request.user)
-    if request.method == 'POST':
-        voteform = VotesForm(request.POST, request.FILES)
-        print(voteform.errors)
-        if voteform.is_valid():
-            rating = voteform.save(commit=False)
-            rating.project = project
-            rating.user = request.user
-            rating.save()
-            return redirect('vote',project_id)
-    else:
-        voteform = VotesForm()
-    return render(request,'vote.html',locals())
-
-
-
-def Vote(request):
-    profile = User.objects.get(username=request.user)
-    return render(request,'vote.html',locals())
-
-def view_vote(request,project_id):
-    user = User.objects.get(username=request.user)
-    project = Project.objects.get(pk=project_id)
-    vote = Votes.objects.filter(project_id=project_id)
-    print(vote)
-    return render(request,'project.html',locals())
-
-
-
-@login_required(login_url='/accounts/login/')
-def vote(request,project_id):
-
-   project = Project.objects.get(pk=project_id)
-   vote = Votes.objects.filter(project_id=project_id).all()
-   print([r.project_id for r in vote])
-   rateform = VotesForm()
-
-   return render(request,"projects.html", locals())
-
+# def vote_project(request,project_id):
+#     new_votes = Votes.objects.all().filter(project_id=project.id)
+#
+#     if request.method == 'POST':
+#         form = VotesForm(request.POST)
+#         if form.is_valid():
+#             review = form.save(commit=False)
+#             review.project = project
+#             review.user = request.user
+#             review.save()
+#
+#     else:
+#         form = VotesForm()
+#
+#     return render(request, 'vote.html',locals())
+#
+#
 
 
 
