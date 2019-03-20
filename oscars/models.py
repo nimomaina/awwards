@@ -71,6 +71,9 @@ class Project(models.Model):
     def delete_image(self):
         self.delete()
 
+    def __str__(self):
+        return self.owner
+
     @classmethod
     def get_project(cls, profile):
         project = Project.objects.filter(Profile__pk=profile)
