@@ -4,6 +4,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from pyuploadcare.dj.models import ImageField
 from pyuploadcare.dj.forms import FileWidget
+from django.conf import settings
+from django.db.models import Avg, Max, Min
+import numpy as np
 
 # Create your models here.
 
@@ -80,41 +83,63 @@ class Project(models.Model):
 
     @classmethod
     def search_by_project(cls, search_term):
-        projo = Project.objects.filter(title__icontains=search_term)
-        return projo
+        project = Project.objects.filter(title__icontains=search_term)
+        return project
 
     @classmethod
     def get_profile_projects(cls, profile):
         project = Project.objects.filter(profile__pk=profile)
         return project
 
-    @classmethod
-    def find_project_id(cls, id):
-        identity = Project.objects.get(pk=id)
-        return identity
+    def average_design(self):
+        design_ratings = list(map(lambda x: x.design_rating, self.reviews.all()))
+        return np.mean(design_ratings)
 
+    def average_usability(self):
+        usability_ratings = list(map(lambda x: x.usability_rating, self.reviews.all()))
+        return np.mean(usability_ratings)
+
+    def average_content(self):
+        content_ratings = list(map(lambda x: x.content_rating, self.reviews.all()))
+        return np.mean(content_ratings)
 
 class Votes(models.Model):
-    design = models.CharField(max_length=100)
-    usability = models.CharField(max_length=100)
-    content = models.CharField(max_length=100, blank=True, null=True)
-    average = models.FloatField(max_length=50)
-    user = models.ForeignKey(User, null=True)
-    project = models.ForeignKey(Project, related_name='rate', null=True)
 
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
 
-    class Meta:
-        ordering = ['-id']
+    )
+    project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.CASCADE, related_name="votes")
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='votes')
+    comment = models.TextField()
+    design_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+    usability_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+    content_rating = models.IntegerField(choices=RATING_CHOICES, default=0)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
 
-    def save_rate(self):
+    def save_review(self):
         self.save()
 
-    @classmethod
-    def get_votes(cls, profile):
-        votes = Votes.objects.filter(Profile__pk=profile)
-        return votes
+    def delete_comment(self):
+        Votes.objects.get(id=self.id).delete()
 
     @classmethod
-    def get_all_votes(cls):
-        all_votes = Votes.objects.all()
-        return all_votes
+    def get_comment(cls, id):
+        comments = Votes.objects.filter(project__pk=id)
+        return comments
+
+    def delete_review(self):
+        self.delete()
+
+    def __str__(self):
+        return self.project
+

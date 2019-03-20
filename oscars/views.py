@@ -34,12 +34,15 @@ def upload_project(request):
 def profile(request, username):
     projo = Project.objects.all()
     profile = User.objects.get(username=username)
-    # print(profile.id)
+
+    print(profile.id)
     try:
         profile_details = Profile.get_by_id(profile.id)
     except:
         profile_details = Profile.filter_by_id(profile.id)
-    projo = Project.get_profile_projects(profile.id)
+    # project = Project.objects.filter(profile.id)
+    user = request.user
+    project = Project.objects.all().filter(owner_id=user.id)
     title = f'@{profile.username} awwward projects and screenshots'
 
     return render(request, 'profile.html', locals())
@@ -70,6 +73,16 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request,'search.html',{"message":message})
+
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search')
+        projects = Project.search_project(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html', {'message': message, 'projects': projects})
+    else:
+        message = 'Enter term to search'
+        return render(request, 'search.html', {'message': message})
 
 def vote_project(request,project_id):
     project = Project.objects.get(pk=project_id)

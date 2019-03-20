@@ -6,8 +6,7 @@ A student at Moringa School and an aspiring software developer.
 
 
 ## Description
-Nimo-Awwwwards is a web application that allows users to upload projects they have done, view other projects, login and sign up and rate projects
-
+     
 
 ## Specifications
 * Users can view projects
