@@ -30,7 +30,7 @@ def upload_project(request):
 
     return render(request,'upload_project.html',locals())
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request, username):
 
     profile = User.objects.get(username=username)
@@ -41,7 +41,7 @@ def profile(request, username):
         profile_details = Profile.filter_by_id(profile.id)
     user = request.user
     profile = User.objects.get(username=username)
-    project = Project.get_by_id(profile.id)
+    project = Project.objects.filter(owner=user)
     title = f'@{profile.username} awwward projects and screenshots'
 
     return render(request, 'profile.html', locals())

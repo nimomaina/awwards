@@ -23,6 +23,48 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
+class Project(models.Model):
+    screenshot = ImageField()
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    url = models.CharField(max_length=255)
+    owner = models.OneToOneField(User)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    design=models.PositiveIntegerField(choices=list(zip(range(1,11), range(1,11))), default=1)
+    usability = models.PositiveIntegerField(choices=list(zip(range(1, 11), range(1, 11))), default=1)
+    content = models.PositiveIntegerField(choices=list(zip(range(1, 11), range(1, 11))), default=1)
+    remarks = models.CharField(max_length=50,null=True)
+
+    class Meta:
+        ordering = ['-pk']
+
+    def save_project(self):
+        self.save()
+
+
+    def delete_image(self):
+        self.delete()
+
+    def __str__(self):
+
+        return self.title
+
+    @classmethod
+    def get_by_id(cls, id):
+        details = Project.objects.filter(owner=id)
+        return details
+
+    @classmethod
+    def get_all_projects(cls):
+        project = Project.objects.all()
+        return project
+
+    @classmethod
+    def search_by_project(cls, search_term):
+        project = Project.objects.filter(title__icontains=search_term)
+        return project
+
+
 class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'profile/',blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -31,6 +73,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255, null = True)
     phone_number = models.IntegerField( null = True)
     full_name = models.CharField(max_length=255, null=True)
+    project = models.ForeignKey(Project,null=True)
 
     def __str__(self):
         return self.user.username
@@ -52,56 +95,6 @@ class Profile(models.Model):
     def search_user(cls, name):
         userprof = Profile.objects.filter(user__username__icontains=name)
         return userprof
-
-class Project(models.Model):
-    screenshot = ImageField()
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
-    profile = models.ForeignKey(Profile,null=True)
-    owner = models.ForeignKey(User, null=True)
-    created_on = models.DateTimeField(auto_now_add=True, null=True)
-
-    class Meta:
-        ordering = ['-pk']
-
-    def save_project(self):
-        self.save()
-
-
-    def delete_image(self):
-        self.delete()
-
-    def __str__(self):
-
-        return self.owner
-
-    @classmethod
-    def get_by_id(cls, id):
-        details = Project.objects.filter(owner=id)
-        return details
-
-    @classmethod
-    def get_project(cls, profile):
-        project = Project.objects.filter(Profile__pk=profile)
-        return project
-
-    @classmethod
-    def get_all_projects(cls):
-        project = Project.objects.all()
-        return project
-
-    @classmethod
-    def search_by_project(cls, search_term):
-        project = Project.objects.filter(title__icontains=search_term)
-        return project
-
-    @classmethod
-    def get_profile_projects(cls, profile):
-        project = Project.objects.filter(profile__pk=profile)
-        return project
-
 
 class Votes(models.Model):
 

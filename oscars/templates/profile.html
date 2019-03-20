@@ -83,23 +83,51 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="w3-container">
 
 
-    <div class="row">
-        {% for item in project %}
-        <div class="col-md-4" id="data">
-            <img class="img-responsive" src="{{item.screenshot.cdn_url }}" alt="Card image cap" width="100%;"
-                 height="300px;">
-        </div>
-        <div class="card-header">
-            <h5 class="card-title">{{item.title}}</h5>
-            <a href="{{item.url}}" class="card-text">
-                <button class="btn btn-outline-primary"> Visit site</button>
-            </a>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">{{item.created_on|timesince}}</small>
+    <div class="w3-row">
+        <h2 class="w3-center">Your Projects</h2>
+        {% for photo in project %}
+        <div class="w3-col l4 m6 s12 w3-padding">
+            <div class="w3-card-4 w3-white">
+
+                <header class="hovereffect" style="height:300px">
+                    <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image w3-center" style="min-height:100%; max-height:100%">
+                    <div class="overlay">
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href=""><small>Vote Now</small></a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{{photo.url}}"><small>Visit Site</small></a></p>
+
+                    </div>
+
+                </header>
+
+                <div class="w3-container w3-margin">
+
+                    <strong>{{ photo.title }}</strong>
+                       <a href="{% url 'project' project_id=photo.id %}" class=" w3-right "style="color:blue">View More</a>
+
+
+                </div>
+
+                <footer class="w3-container w3-margin">
+                    <small>{{user.username}}</small>
+
+
+                        <div class="row">
+
+                            <div class="col-md-2" style="color:black;font-size: 10px;font-weight: bold;">
+                                <h5 class="card-title"></h5>
+                            </div>
+                        </div>
+
+                <small class="text-muted">{{photo.created_on|timesince}}</small>
+
+
+                </footer>
+
+            </div>
+
         </div>
         {% endfor %}
     </div>
