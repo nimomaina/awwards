@@ -3,22 +3,26 @@
 {% block content %}
 
  <div class="w3-container">
+     <h1 class="text-center">{{project.title}}</h1>
+     <hr>
+
+   <div class="w3-row-padding" style="height:500px">
+     <img src="{{project.screenshot.cdn_url}}"  class="w3-image" alt=""style="max-height:100%; min-width:100%">
+   </div>
+
+   <div class="w3-panel w3-border w3-light-grey w3-round-large">
+
+       <hr>
+
 
    <div class="w3-row-padding">
-     <img src="{{project.screenshot.cdn_url}}"  class="img-responsive" alt="">
+       <p><strong>Description:  </strong>{{project.description}}</p>
    </div>
 
-   <div class="row">
-     <h1 class="text-center">{{project.title}}</h1>
+   <div class="w3-panel w3-leftbar w3-sand  w3-serif">
+     <p><strong>Posted </strong>{{project.created_on|timesince}} </p>
    </div>
-
-   <div class="row">
-     <p>{{project.description}}</p>
-   </div>
-
-   <div class="row">
-     <p>Posted on {{project.created_on|timesince}} by {{project.profile.full_name}}</p>
-   </div>
+       </div>
 
  </div>
 
