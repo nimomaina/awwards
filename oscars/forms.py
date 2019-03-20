@@ -14,7 +14,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user', 'votes','project']
 
-class VotesForm(forms.ModelForm):
+class VoteForm(forms.ModelForm):
     class Meta:
-        model = Votes
-        exclude = ['user']
+        model = Project
+        fields=('design','usability','content','remarks')

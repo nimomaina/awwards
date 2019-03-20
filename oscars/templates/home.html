@@ -25,7 +25,7 @@
                 <header class="hovereffect" style="height:300px">
                     <img src=" {{ photo.screenshot.cdn_url }}" class="img-responsive w3-image w3-center" style="min-height:100%; max-height:100%">
                     <div class="overlay">
-                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href=""><small>Vote Now</small></a></p>
+                        <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{% url 'rate' photo.id %}}"><small>Vote Now</small></a></p>
                         <p><a class="info w3-btn w3-round-xxlarge w3-white w3-padding" href="{{photo.url}}"><small>Visit Site</small></a></p>
 
                     </div>

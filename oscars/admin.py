@@ -5,4 +5,3 @@ from .models import *
 
 admin.site.register(Project)
 admin.site.register(Profile)
-admin.site.register(Votes)

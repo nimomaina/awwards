@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^accounts/update/', views.edit, name='update_profile'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^project/(?P<project_id>\d+)', views.project, name='project'),
+    url(r'^rate/(\d+)',views.vote_project,name = 'rate'),
 
 ]
 
