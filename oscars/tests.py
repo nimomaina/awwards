@@ -4,18 +4,14 @@ from .models import Project,Profile
 
 class ProjectTestCases(TestCase):
     def setUp(self):
-
-        self.new_project = Project(id=1,photo='media/Nature.jpg',title='Pitch', url='https://nimo-pitch.herokuapp.com',description='Test',created_on='15-03-2019')
+        self.new_project = Project(id=1,screenshot='media/Nature.jpg',title='Pitch', url='https://nimo-pitch.herokuapp.com',description='Test',created_on='15-03-2019')
         self.new_project.save_project()
 
     def tearDown(self):
-        Profile.objects.all().delete()
         Project.objects.all().delete()
 
     def test_is_instance(self):
-
         self.assertTrue(isinstance(self.new_project,Project))
-        self.assertTrue(isinstance(self.new_profile,Profile))
 
     def test_save_method(self):
         self.new_project.save_project()
@@ -32,7 +28,7 @@ class ProjectTestCases(TestCase):
 class ProfileTestCases(TestCase):
     def setUp(self):
         self.new_profile = Profile(id=1, profile_pic='media/profile/mypic.jpg', bio='Live life',
-                                   projects_id='1', telephone='07190000', user_id=1)
+                                   projects_id='1', telephone='07190000', full_name='Wairimu Maina')
 
 
     def tearDown(self):
