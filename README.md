@@ -1,4 +1,4 @@
-# Nimo-Awwwwards
+# Nimo-Awwwward
 A web application that rates uploaded projects.
 
 ## By Wairimu Maina
@@ -6,7 +6,7 @@ A student at Moringa School and an aspiring software developer.
 
 
 ## Description
-     
+Nimo-awards is a site where users can upload projects, they can view projects uploaded by other users, rate projects according to design, usability and content and the average rate is displayed for each.   
 
 ## Specifications
 * Users can view projects
